@@ -268,50 +268,78 @@
 # page when user is redirected after generationg token
 
     --------------------------------------------------
-    | LOGO | My Token Status        Home | Logout   |
+    | LOGO | My Token Status            Home | Login |
     --------------------------------------------------
 
     --------------------------------------------------
     |  TOKEN CONFIRMED ✅                           |
     |------------------------------------------------|
-    |  Your Token Number : A-26                     |
-    |  Department        : OPD                      |
-    |  Hospital          : Hospital Name            |
+    |  Token Number     : A-26                      |
+    |  Department       : OPD                       |
+    |  Hospital         : Hospital Name             |
+    |  Date & Time      : Today, 10:42 AM           |
+    --------------------------------------------------
+
+    --------------------------------------------------
+    |  ⚠ SAVE YOUR RECORDS                          |
+    |------------------------------------------------|
+    |  You are using guest access                  |
+    |  Register to save your token history,        |
+    |  medical visits & faster future booking      |
+    |                                                |
+    |  [ Register Now ]   [ Login ]                 |
     --------------------------------------------------
 
     --------------------------------------------------
     |  LIVE QUEUE STATUS                            |
     |------------------------------------------------|
     |  Now Serving Token   : A-23                   |
-    |  Patients Ahead     : 3                      |
-    |  Estimated Wait     : 8 mins                 |
+    |  Your Position       : 3rd in queue           |
+    |  Estimated Wait      : 8 mins                 |
     --------------------------------------------------
 
     --------------------------------------------------
-    |  QUEUE PROGRESS (VISUAL BAR)                  |
+    |  QUEUE PROGRESS                               |
     |------------------------------------------------|
     |  [██████████░░░░░░░░]  70% completed          |
+    |  (Queue updates automatically)               |
     --------------------------------------------------
 
     --------------------------------------------------
-    |  IMPORTANT UPDATES                            |
+    |  REAL-TIME UPDATES                            |
     |------------------------------------------------|
     |  • Please stay near the hospital              |
-    |  • You will be notified when your turn comes  |
+    |  • Notification will be sent on your turn    |
+    |  • Delay alerts will be shown here            |
+    --------------------------------------------------
+
+    --------------------------------------------------
+    |  PATIENT DETAILS (TEMPORARY)                  |
+    |------------------------------------------------|
+    |  Name          : Guest User                   |
+    |  Mobile Number : ********45                  |
+    |  Status        : Guest (Not Saved)            |
     --------------------------------------------------
 
     --------------------------------------------------
     |  ACTIONS                                      |
     |------------------------------------------------|
-    |  [ Refresh Status ]                           |
-    |  [ Cancel Token ]                             |
+    |  [ Refresh Status ]   [ Cancel Token ]        |
     --------------------------------------------------
 
     --------------------------------------------------
-    |  OTHER INFORMATION                            |
+    |  WHY REGISTER?                                |
     |------------------------------------------------|
-    |  Hospital Timings: 9 AM – 8 PM                 |
-    |  Help Desk: 1800-XXX-XXX                      |
+    |  ✔ View previous tokens                      |
+    |  ✔ Faster token generation next time         |
+    |  ✔ Medical visit history                     |
+    --------------------------------------------------
+
+    --------------------------------------------------
+    |  HOSPITAL INFO                                |
+    |------------------------------------------------|
+    |  Timings   : 9:00 AM – 8:00 PM                |
+    |  Help Desk : 1800-XXX-XXX                     |
     --------------------------------------------------
 
 
