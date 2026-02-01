@@ -20,7 +20,7 @@ const router=createBrowserRouter([
         children:[
             {path:"/",element:(<Home/>)}, //done-f
             {path:'/search-hospital',element:(<SearchHospitalPage/>)},
-            {path:'/hospital',element:(<HospitalInfoPage/>)}, //done-f
+            {path:'/hospital',element:(<HospitalInfoPage/>)}, // done-f
             {path:'/hospital/generate-token',element:(<GenerateTokenPage/>)},
             {path:'/token-status-page',element:(<TokenStatusPage/>)},
 

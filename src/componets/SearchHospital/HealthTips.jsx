@@ -23,7 +23,7 @@ const tips = [
     icon: "🛌",
   },
   {
-    title: "Wash Hands",
+    title: "Wash Hands", 
     description: "Maintain hygiene by washing hands before meals and after coming home.",
     icon: "🧼",
   },
