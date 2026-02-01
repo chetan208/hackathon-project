@@ -8,7 +8,7 @@ const policies = [
   { text: "Follow hospital timings strictly", type: "info" },
   { text: "Wear masks inside hospital premises", type: "alert" },
 ];
-
+ 
 const HospitalPolicies = () => {
   return (
     <div className="w-[90%] mx-auto mt-12 mb-20">

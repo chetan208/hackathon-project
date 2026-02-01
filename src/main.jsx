@@ -9,6 +9,9 @@ import SearchHospitalPage from './Pages/SearchHospital.jsx'
 import HospitalInfoPage from './Pages/HospitalInfoPage.jsx'
 import GenerateTokenPage from './Pages/GenerateTokenPage.jsx'
 import TokenStatusPage from './Pages/TokenPage.jsx'
+import SuperAdmin from './Pages/SuperAdmin.jsx'
+import DepartmentAdminPanalPage from './Pages/DepartmentAdminPanal.jsx'
+import HospitalSignup from './Pages/RegisterHospital.jsx'
 
 const router=createBrowserRouter([
     {
@@ -19,7 +22,12 @@ const router=createBrowserRouter([
             {path:'/search-hospital',element:(<SearchHospitalPage/>)},
             {path:'/hospital',element:(<HospitalInfoPage/>)},
             {path:'/hospital/generate-token',element:(<GenerateTokenPage/>)},
-            {path:'/token-status-page',element:(<TokenStatusPage/>)}
+            {path:'/token-status-page',element:(<TokenStatusPage/>)},
+
+            {path:'/super-admin',element:(<SuperAdmin/>)},
+            {path:'/department-admin',element:(<DepartmentAdminPanalPage/>)},
+
+            {path:'/register-hospital',element:(<HospitalSignup/>)}
         ]
     }
 ])

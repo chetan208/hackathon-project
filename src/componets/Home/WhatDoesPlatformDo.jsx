@@ -37,7 +37,7 @@ const features = [
 
 const WhatDoesPlatformDo = () => {
   return (
-    <section className="bg-gray-50 py-24">
+    <section className="bg-white py-10">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Heading */}
