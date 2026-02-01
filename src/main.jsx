@@ -18,16 +18,16 @@ const router=createBrowserRouter([
         path:'/',
         element:(<App/>),
         children:[
-            {path:"/",element:(<Home/>)},
+            {path:"/",element:(<Home/>)}, //done-f
             {path:'/search-hospital',element:(<SearchHospitalPage/>)},
-            {path:'/hospital',element:(<HospitalInfoPage/>)},
+            {path:'/hospital',element:(<HospitalInfoPage/>)}, //done-f
             {path:'/hospital/generate-token',element:(<GenerateTokenPage/>)},
             {path:'/token-status-page',element:(<TokenStatusPage/>)},
 
             {path:'/super-admin',element:(<SuperAdmin/>)},
-            {path:'/department-admin',element:(<DepartmentAdminPanalPage/>)},
+            {path:'/department-admin',element:(<DepartmentAdminPanalPage/>)},//done-f
 
-            {path:'/register-hospital',element:(<HospitalSignup/>)}
+            {path:'/register-hospital',element:(<HospitalSignup/>)} //done-f
         ]
     }
 ])
