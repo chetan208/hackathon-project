@@ -1,6 +1,7 @@
 // components/HospitalHero.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import image from "../../assets/image.png"
 
 const HospitalHero = () => {
   const hospital = {
@@ -12,18 +13,19 @@ const HospitalHero = () => {
     timings: "9:00 AM – 8:00 PM",
     type: "Government",
   };
-
+ 
   const navigate=useNavigate();
 
   return (
-    <div className="w-full h-screen flex flex-col md:flex-row bg-gray-100">
+    <div className="w-full h-screen flex flex-col md:flex-row justify-center items-center">
       
       {/* Left Side - Placeholder Image */}
-      <div className="md:w-1/2 w-full h-80 md:h-full bg-gray-300 border-4 border-gray-800 flex items-center justify-center relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-400 to-gray-200 opacity-30"></div>
-        <span className="text-3xl md:text-5xl font-bold text-gray-800 z-10">
-          Hospital Image
-        </span>
+      <div className="md:w-1/2 w-full h-80 md:h-90 border-4 border-gray-800 flex items-center justify-center  relative">
+       
+        <img
+        src={image}
+        className="cover h-full w-full"
+        ></img>
       </div>
 
       {/* Right Side - Info */}

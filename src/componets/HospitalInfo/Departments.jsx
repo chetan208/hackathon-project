@@ -9,7 +9,7 @@ const departments = [
   { id: 5, name: "Orthopedics", queue: 5, waitTime: 18 },
   { id: 6, name: "Dermatology", queue: 2, waitTime: 10 },
 ];
-
+ 
 const Departments = () => {
   return (
     <div className="mt-12 w-[90%] mx-auto">
