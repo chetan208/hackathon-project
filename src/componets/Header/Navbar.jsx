@@ -1,47 +1,52 @@
-import { Link } from "react-router-dom";
+import React from "react";
 
 const Navbar = () => {
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        
-        {/* Logo + Name */}
-        <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 
-                          flex items-center justify-center text-white font-bold text-lg shadow">
-            H
+    <nav className="w-full bg-white shadow-sm fixed top-0 left-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          
+          {/* Left - Logo */}
+          <div className="flex-shrink-0">
+            <h1 className="text-2xl font-bold text-blue-600">SmartQueue</h1>
           </div>
-          <div className="leading-tight">
-            <h1 className="text-lg font-semibold text-gray-900">
-              Hospital Queue
-            </h1>
-            <p className="text-xs text-gray-500">
-              Smart Patient Flow
-            </p>
+
+          {/* Center - Info Links */}
+          <div className="hidden md:flex space-x-6">
+            <a href="/about" className="text-gray-800 hover:text-blue-600 transition">
+              About Us
+            </a>
+            <a href="/contact" className="text-gray-800 hover:text-blue-600 transition">
+              Contact
+            </a>
+            <a href="/how-it-works" className="text-gray-800 hover:text-blue-600 transition">
+              How it works
+            </a>
           </div>
-        </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-3">
-          <Link
-            to="/login"
-            className="px-4 py-2 text-sm font-medium text-gray-700 
-                       hover:text-blue-600 transition"
-          >
-            Login
-          </Link>
+          {/* Right - Login / Register */}
+          <div className="flex space-x-4">
+            <a
+              href="/login"
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              Login
+            </a>
+            <a
+              href="/register"
+              className="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-50 transition"
+            >
+              Register
+            </a>
+          </div>
 
-          <Link
-            to="/register"
-            className="px-5 py-2 text-sm font-semibold text-white 
-                       bg-gradient-to-r from-blue-600 to-cyan-500
-                       rounded-full shadow hover:opacity-90 transition"
-          >
-            Register
-          </Link>
+          {/* Mobile Hamburger */}
+          <div className="md:hidden">
+            {/* Optional: Add mobile hamburger menu here */}
+          </div>
         </div>
       </div>
-    </header>
+    </nav>
   );
 };
 
