@@ -12,6 +12,7 @@ import TokenStatusPage from './Pages/TokenPage.jsx'
 import SuperAdmin from './Pages/SuperAdmin.jsx'
 import DepartmentAdminPanalPage from './Pages/DepartmentAdminPanal.jsx'
 import HospitalSignup from './Pages/RegisterHospital.jsx'
+import DepartmentRegistration from './componets/DepartmentRegisteration/components/DepartmentRegistration.jsx'
 
 const router=createBrowserRouter([
     {
@@ -27,7 +28,9 @@ const router=createBrowserRouter([
             {path:'/super-admin',element:(<SuperAdmin/>)},
             {path:'/department-admin',element:(<DepartmentAdminPanalPage/>)},//done-f
 
-            {path:'/register-hospital',element:(<HospitalSignup/>)} //done-f
+            {path:'/register-hospital',element:(<HospitalSignup/>)}, //done-f
+
+            {path:'/department-registration',element:(<DepartmentRegistration/>)}
         ]
     }
 ])
