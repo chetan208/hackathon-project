@@ -50,7 +50,7 @@ export default function HospitalRegistration() {
   // Success Screen
   if (isComplete) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50 flex items-center justify-center p-4">
+      <div className="min-h-screen  bg-gradient-to-br from-teal-50 via-white to-cyan-50 flex items-center justify-center p-4">
         <div className="text-center max-w-lg">
           <div className="mx-auto rounded-full bg-emerald-100 p-8 w-fit mb-8">
             <CheckCircle2 className="h-20 w-20 text-emerald-500" />
