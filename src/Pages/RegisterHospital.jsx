@@ -6,7 +6,7 @@ import HospitalRegistration from "../componets/registration/HospitalRegistration
 const HospitalSignup = () => {
 
   return (
-    <div>
+    <div >
       
       <HospitalRegistration/>
       

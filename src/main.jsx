@@ -19,15 +19,17 @@ const router=createBrowserRouter([
         element:(<App/>),
         children:[
             {path:"/",element:(<Home/>)}, //done-f
-            {path:'/search-hospital',element:(<SearchHospitalPage/>)},
+            {path:'/search-hospital',element:(<SearchHospitalPage/>)}, //done-f
             {path:'/hospital',element:(<HospitalInfoPage/>)}, // done-f
-            {path:'/hospital/generate-token',element:(<GenerateTokenPage/>)},
-            {path:'/token-status-page',element:(<TokenStatusPage/>)},
+            {path:'/hospital/generate-token',element:(<GenerateTokenPage/>)}, //done-f
+            {path:'/token-status-page',element:(<TokenStatusPage/>)}, //done-f
 
-            {path:'/super-admin',element:(<SuperAdmin/>)},
+            {path:'/super-admin',element:(<SuperAdmin/>)}, //done-50%
             {path:'/department-admin',element:(<DepartmentAdminPanalPage/>)},//done-f
 
             {path:'/register-hospital',element:(<HospitalSignup/>)} //done-f
+
+            //register-department- //done-f
         ]
     }
 ])
@@ -37,3 +39,5 @@ createRoot(document.getElementById('root')).render(
    <RouterProvider router={router}/>
 
 )
+
+
