@@ -1,89 +1,94 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Activity, 
-  Users, 
-  Clock, 
-  UserPlus, 
-  TrendingUp, 
-  AlertCircle,
-  Heart,
-  Stethoscope,
-  Baby,
-  Brain,
-  Eye,
-  Bone,
-  Scissors,
-  Pill,
-  Droplet,
-  Smile,
-  Waves,
-  Thermometer,
-  ChevronRight,
-  Bell,
-  Search,
+import React, { useState } from "react";
+import {
+  Activity,
+  Users,
   Calendar,
-  CheckCircle,
-  XCircle
-} from 'lucide-react';
-import DepartmentDashboard from './components/Deshboard';
-import LiveQueue from './components/QueueList';
-import TokenList from './components/TokenList';
-import DoctorAvailability from './components/DoctarAvlability';
-import Reports from './components/Reports';
+  Stethoscope,
+  TrendingUp,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+
+import DepartmentDashboard from "./components/Deshboard";
+import LiveQueue from "./components/QueueList";
+import TokenList from "./components/TokenList";
+import DoctorAvailability from "./components/DoctarAvlability";
+import Reports from "./components/Reports";
 
 const SmartQueue = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [selectedDept, setSelectedDept] = useState('OPD');
-  const [notifications, setNotifications] = useState(3);
+  const [activetab, setActiveTab] = useState("Dashboard");
+  const [collapsed, setCollapsed] = useState(false);
 
-  const [activetab,setActiveTab]=useState("Dashboard")
-
-
-
-  console.log(activetab)
+  const menuItems = [
+    { name: "Dashboard", icon: Activity },
+    { name: "Live Queue", icon: Users },
+    { name: "Token List", icon: Calendar },
+    { name: "Doctor Availability", icon: Stethoscope },
+    { name: "Reports", icon: TrendingUp },
+  ];
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50">
-      {/* Header */}
-  
+    <div className="min-h-screen bg-gray-100 flex mt-10">
+      
+      {/* SIDEBAR */}
+      <aside
+        className={`
+          bg-white border-r shadow-sm px-3 py-6 pt-12
+          transition-all duration-300
+          ${collapsed ? "w-20" : "w-64"}
+        `}
+      >
+        {/* HEADER */}
+        <div className="flex items-center justify-between mb-8">
+          {!collapsed && (
+            <h2 className="text-lg font-bold text-blue-600">
+              OPD Department
+            </h2>
+          )}
 
-      <div className="flex max-w-7xl mx-auto  mt-20">
-        {/* Sidebar */}
-        <aside className="w-64 bg-white shadow-lg min-h-screen p-6 sticky top-20 h-fit">
-          <nav className="space-y-2">
-            {[
-              { name: 'Dashboard', icon: Activity, active: true },
-              { name: 'Live Queue', icon: Users },
-              { name: 'Token List', icon: Calendar },
-              { name: 'Doctor Availability', icon: Stethoscope },
-              { name: 'Reports', icon: TrendingUp }
-            ].map((item, idx) => (
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            className="p-2 rounded-lg hover:bg-gray-100 text-gray-600"
+          >
+            {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+          </button>
+        </div>
+
+        {/* NAV */}
+        <nav className="space-y-2">
+          {menuItems.map((item) => {
+            const isActive = activetab === item.name;
+
+            return (
               <button
-                key={idx}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition ${
-                  item.name == activetab 
-                    ? 'bg-[#0055ff] text-white shadow-lg shadow-blue-200' 
-                    : 'text-gray-700 hover:bg-blue-50'
-                }`}
-                onClick={()=>setActiveTab(item.name)}
+                key={item.name}
+                onClick={() => setActiveTab(item.name)}
+                className={`
+                  w-full flex items-center gap-3 px-3 py-3 rounded-lg
+                  transition-all duration-200
+                  ${
+                    isActive
+                      ? "bg-blue-50 text-blue-600 border-l-4 border-blue-600 font-semibold"
+                      : "text-gray-600 hover:bg-gray-100 hover:text-blue-600"
+                  }
+                `}
               >
-                <item.icon size={20} />
-                <span className="font-medium">{item.name}</span>
+                <item.icon size={20} className="shrink-0" />
+                {!collapsed && <span>{item.name}</span>}
               </button>
-            ))}
-          </nav>
+            );
+          })}
+        </nav>
+      </aside>
 
-         
-        </aside>
-
-        {activetab == "Dashboard" && <DepartmentDashboard/>}
-        {activetab == "Live Queue" && <LiveQueue/>}
-        {activetab == "Token List" && <TokenList/>}
-        {activetab == "Doctor Availability" && <DoctorAvailability/>}
-        {activetab == "Reports" && <Reports/>}
-      
-      
-      </div>
+      {/* MAIN CONTENT */}
+      <main className="flex-1 p-6">
+        {activetab === "Dashboard" && <DepartmentDashboard />}
+        {activetab === "Live Queue" && <LiveQueue />}
+        {activetab === "Token List" && <TokenList />}
+        {activetab === "Doctor Availability" && <DoctorAvailability />}
+        {activetab === "Reports" && <Reports />}
+      </main>
     </div>
   );
 };
