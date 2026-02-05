@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 
 const Navbar = () => {
   return (
@@ -26,18 +27,18 @@ const Navbar = () => {
 
           {/* Right - Login / Register */}
           <div className="flex space-x-4">
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
             >
               Login
-            </a>
-            <a
+            </Link>
+            <Link
               href="/register"
               className="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-50 transition"
             >
               Register
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Hamburger */}
