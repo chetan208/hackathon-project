@@ -1,6 +1,6 @@
 
 
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import {
   LayoutDashboard,
   Building2,
@@ -16,7 +16,29 @@ import {
   Stethoscope,
 } from "lucide-react";
 
-function Deshboard() {
+import axios from 'axios'
+
+function Deshboard({hospitalData, doctorCount, activeDepartments}) {
+
+  
+  const [time, setTime] = useState(new Date());
+
+
+   useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000); // every 1 second
+
+    return () => clearInterval(interval); // cleanup
+  }, []);
+
+  
+
+
+  
+
+
+
   return (
     <div className="flex-1 p-8">
         {/* TOP HEADER */}
@@ -37,7 +59,7 @@ function Deshboard() {
 
           <div className="text-right">
             <p className="text-sm text-gray-500">Current Time</p>
-            <p className="font-semibold">12 : 06 AM</p>
+            <p className="font-semibold">{time.toLocaleTimeString()}</p>
           </div>
         </div>
 
@@ -46,20 +68,14 @@ function Deshboard() {
           <StatCard
             icon={<Building2 />}
             title="Departments"
-            value="8"
+            value={hospitalData?.departments.length || 0}
             color="blue"
           />
           <StatCard
             icon={<Stethoscope />}
             title="Doctors On Duty"
-            value="14"
+            value={doctorCount}
             color="green"
-          />
-          <StatCard
-            icon={<Users />}
-            title="Total Staff"
-            value="32"
-            color="purple"
           />
           <StatCard
             icon={<Clock />}
@@ -84,10 +100,16 @@ function Deshboard() {
             </h2>
 
             <div className="space-y-4">
-              <DepartmentRow name="OPD" status="Busy" color="red" />
-              <DepartmentRow name="Cardiology" status="Active" color="green" />
-              <DepartmentRow name="Orthopedics" status="Active" color="green" />
-              <DepartmentRow name="Neurology" status="Limited" color="yellow" />
+
+              {
+                activeDepartments.map((dept) => (
+                  <DepartmentRow
+                    key={dept._id}
+                    name={dept.name}
+                    status={dept.status}
+                    color={dept.status === "Active" ? "green" : dept.status === "Busy" ? "red" : "yellow"}
+                  />
+                ))}
             </div>
           </div>
 

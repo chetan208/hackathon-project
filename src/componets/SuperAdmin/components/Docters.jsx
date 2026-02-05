@@ -10,36 +10,7 @@ import {
 } from "lucide-react";
 
 const departments = [
-  {
-    name: "General OPD",
-    icon: Stethoscope,
-    doctors: 8,
-    color: "bg-blue-100 text-blue-600",
-  },
-  {
-    name: "Cardiology",
-    icon: HeartPulse,
-    doctors: 5,
-    color: "bg-red-100 text-red-600",
-  },
-  {
-    name: "Pediatrics",
-    icon: Baby,
-    doctors: 4,
-    color: "bg-pink-100 text-pink-600",
-  },
-  {
-    name: "Neurology",
-    icon: Brain,
-    doctors: 3,
-    color: "bg-purple-100 text-purple-600",
-  },
-  {
-    name: "Ophthalmology",
-    icon: Eye,
-    doctors: 2,
-    color: "bg-green-100 text-green-600",
-  },
+ 
   {
     name: "Orthopedics",
     icon: Bone,
@@ -48,7 +19,7 @@ const departments = [
   },
 ];
 
-const Doctors = () => {
+const Doctors = ({departments}) => {
   return (
     <div>
       {/* PAGE HEADER */}
@@ -79,16 +50,16 @@ const Doctors = () => {
               </div>
 
               <div
-                className={`p-3 rounded-full ${dept.color}`}
+                className={`p-3 rounded-full`}
               >
-                <dept.icon size={26} />
+                {/* <dept.icon size={26} /> */}
               </div>
             </div>
 
             <div className="mt-6 flex items-center gap-2">
               <UserRound className="text-gray-400" size={20} />
               <span className="text-3xl font-bold text-gray-800">
-                {dept.doctors}
+                {dept.Doctors.length}
               </span>
               <span className="text-gray-500 text-sm mt-2">
                 Doctors

@@ -1,5 +1,5 @@
 import React from 'react'
-import hospitalsvg from '../../assets/hospitalsvg.png'
+import hospitalsvg from '../../../assets/hospitalsvg.png'
 
 function LeftSection() {
   return (

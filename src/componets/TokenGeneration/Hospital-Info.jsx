@@ -49,7 +49,7 @@ const TokenPage = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-18 px-4 ">
       <div className="max-w-7xl mx-auto">
         {/* Page Header */}
         <div className="text-center mb-8">

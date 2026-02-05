@@ -1,7 +1,7 @@
 import React from "react";
-import LeftSection from "../componets/RegisterHospital/LeftSection";
-import RightSection from "../componets/RegisterHospital/RightSection";
-import HospitalRegistration from "../componets/registration/HospitalRegistration";
+import LeftSection from "../componets/Home/RegisterHospital/LeftSection";
+import RightSection from "../componets/Home/RegisterHospital/RightSection";
+import HospitalRegistration from "../componets/hospitalRegistration/HospitalRegistration";
 
 const HospitalSignup = () => {
 

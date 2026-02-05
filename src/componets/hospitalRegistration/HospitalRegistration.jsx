@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import StepIndicator from "./StepIndicator"
 import StepBasicDetails from "./StepBasicDetails"
 import StepEmailVerification from "./StepEmailVerification"
 import StepBranding from "./StepBranding"
 import StepDepartments from "./StepDepartments"
 import { CheckCircle2, Hospital, ArrowRight, LayoutDashboard } from "lucide-react"
+
+
 
 const DEFAULT_POLICIES = {
   appointment: "Patients must arrive 15 minutes before their scheduled appointment time. Late arrivals may need to be rescheduled. Please bring all relevant medical documents and a valid ID.",
@@ -34,12 +36,19 @@ export default function HospitalRegistration() {
     branding: {
       logo: null,
       banner: null,
-      logoPreview: null,
-      bannerPreview: null,
       policies: DEFAULT_POLICIES,
     },
     departments: [],
   })
+
+  useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  })
+}, [currentStep])
+
+  
 
   const handleComplete = () => {
     // Here you would typically send data to your backend
@@ -76,7 +85,7 @@ export default function HospitalRegistration() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50 pt-15">
       <div className="max-w-6xl mx-auto px-4 py-8 lg:py-12">
         {/* Header */}
         <div className="text-center mb-10">
@@ -100,8 +109,7 @@ export default function HospitalRegistration() {
         <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100 p-6 lg:p-10">
           {currentStep === 1 && (
             <StepBasicDetails
-              data={data.basicDetails}
-              onChange={(basicDetails) => setData({ ...data, basicDetails })}
+              setData={setData}
               onNext={() => setCurrentStep(2)}
             />
           )}
@@ -122,6 +130,8 @@ export default function HospitalRegistration() {
               onChange={(branding) => setData({ ...data, branding })}
               onNext={() => setCurrentStep(4)}
               onBack={() => setCurrentStep(2)}
+              email={data.basicDetails.email}
+              setData={setData}
             />
           )}
 

@@ -12,7 +12,13 @@ import TokenStatusPage from './Pages/TokenPage.jsx'
 import SuperAdmin from './Pages/SuperAdmin.jsx'
 import DepartmentAdminPanalPage from './Pages/DepartmentAdminPanal.jsx'
 import HospitalSignup from './Pages/RegisterHospital.jsx'
-import DepartmentRegistration from './componets/DepartmentRegisteration/components/DepartmentRegistration.jsx'
+
+import Layout from './componets/DepartmentRegisteration/mainLayout.jsx'
+import RegisterUserPage from './Pages/RegisterUserPage.jsx'
+import { Provider } from "react-redux";
+
+import store from './store/store.js'
+import SignInPage from './Pages/SignIn.jsx'
 
 const router=createBrowserRouter([
     {
@@ -28,16 +34,25 @@ const router=createBrowserRouter([
             {path:'/super-admin',element:(<SuperAdmin/>)}, //done-50%
             {path:'/department-admin',element:(<DepartmentAdminPanalPage/>)},//done-f
 
-            {path:'/register-hospital',element:(<HospitalSignup/>)}, //done-f
+            {path:'/hospital-registration',element:(<HospitalSignup/>)}, //done-f
 
-            {path:'/department-registration',element:(<DepartmentRegistration/>)}
+            {path:'/department-registration',element:(<Layout/>)},
+
+            {path:'/register-user',element:(<RegisterUserPage/>)},
+
+            {path:'/sign-in',element:(<SignInPage/>)}
         ]
     }
 ])
 
+
 createRoot(document.getElementById('root')).render(
 
-   <RouterProvider router={router}/>
+    <Provider store ={store}>
+  <RouterProvider router={router}/>
+    </Provider>
+
+ 
 
 )
 

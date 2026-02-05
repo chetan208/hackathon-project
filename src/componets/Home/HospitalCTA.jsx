@@ -1,6 +1,9 @@
 import hospitalImage from "../../assets/hospital.jpg"; // replace with your image
+import {useNavigate} from "react-router-dom";
 
 export default function HospitalCTA() {
+  const navigate = useNavigate(); 
+  
   return (
     <section className="bg-blue-50 py-24">
       <div className="max-w-7xl mx-auto px-8 lg:flex lg:items-center lg:gap-16">
@@ -33,7 +36,9 @@ export default function HospitalCTA() {
           </p>
 
           {/* CTA button */}
-          <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+          <button 
+          onClick={() => navigate('/hospital-registration')}
+          className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
             Register Your Hospital
           </button>
         </div>

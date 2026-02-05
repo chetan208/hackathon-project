@@ -1,7 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from "react"
-import { Mail, CheckCircle2, Loader2, ArrowLeft, ArrowRight } from "lucide-react"
+import { useForm } from "react-hook-form";
+import { Mail, CheckCircle2, Loader2, ArrowLeft, ArrowRight,Eye, EyeOff } from "lucide-react"
+import axios from "axios";
+import SetPassword from "./components/SetPassword.jsx";
 
 export default function StepEmailVerification({ email, verified, onVerify, onNext, onBack }) {
   const [otp, setOtp] = useState(["", "", "", "", "", ""])
@@ -54,11 +57,26 @@ export default function StepEmailVerification({ email, verified, onVerify, onNex
   const handleVerify = async () => {
     const otpString = otp.join("")
     if (otpString.length !== 6) return
+    console.log("Verifying OTP:", otpString)
     
     setIsLoading(true)
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    onVerify()
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
+      const res = await axios.post(`${backendUrl}/api/hospitals/verify/${email}`, { otp: otpString })
+      if(res.data.success){
+        onVerify()
+      }else{
+        alert(res.data.message)
+      }
+      console.log("OTP verification response:", res.data)
+
+      setIsLoading(false)
+      
+    } catch (error) {
+      console.error("Error verifying OTP:", error)  
+    }
+   
     setIsLoading(false)
   }
 
@@ -72,37 +90,37 @@ export default function StepEmailVerification({ email, verified, onVerify, onNex
 
   const isOtpComplete = otp.every((digit) => digit !== "")
 
+  
+
   if (verified) {
     return (
       <div className="space-y-8">
-        <div className="flex flex-col items-center justify-center py-12 text-center">
-          <div className="rounded-full bg-emerald-100 p-6 mb-6">
-            <CheckCircle2 className="h-16 w-16 text-emerald-500" />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-900">Email Verified!</h2>
-          <p className="text-gray-500 mt-2 max-w-md">
-            Your email <span className="font-semibold text-gray-900">{email}</span> has been
-            successfully verified.
-          </p>
-        </div>
 
-        <div className="flex justify-between pt-4">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-gray-600 hover:bg-gray-100 transition-all"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            Back
-          </button>
-          <button
-            onClick={onNext}
-            className="flex items-center gap-2 px-8 py-3 rounded-xl font-semibold bg-teal-500 text-white hover:bg-teal-600 shadow-lg shadow-teal-500/25 transition-all"
-          >
-            Continue to Branding
-            <ArrowRight className="h-5 w-5" />
-          </button>
-        </div>
-      </div>
+  {/* Success */}
+  <div className="flex flex-col items-center justify-center py-12 text-center">
+    <div className="rounded-full bg-emerald-100 p-6 mb-6">
+      <CheckCircle2 className="h-16 w-16 text-emerald-500" />
+    </div>
+
+    <h2 className="text-2xl font-bold text-gray-900">
+      Email Verified!
+    </h2>
+
+    <p className="text-gray-500 mt-2 max-w-md">
+      Your email <span className="font-semibold text-gray-900">{email}</span> has been
+      successfully verified.
+    </p>
+  </div>
+
+  {/* 🔐 Setup Password */}
+  <div className="max-w-md mx-auto space-y-5">
+    <SetPassword onNext={onNext} onBack={onBack} email={email} />
+  </div>
+
+  
+
+</div>
+
     )
   }
 
