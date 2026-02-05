@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import RightImage from "./heroComponents/rightImage";
+import RightImage from "./heroComponents/RightImage";
 import LeftContent from "./heroComponents/LeftContent";
 
 const HeroSection = () => {
