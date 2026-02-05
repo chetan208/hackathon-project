@@ -29,6 +29,7 @@ const ConfirmSubmission = ({ formData, onPrevious }) => {
 
     const response = await axios.post(`${backendurl}/api/hospitals/department/upload-image`,fd , {withCredentials:true})
     console.log(response)
+    setSuccess(res.data.success);
    } catch (error) {
     console.error("Error submitting department registration:", error);
    }
