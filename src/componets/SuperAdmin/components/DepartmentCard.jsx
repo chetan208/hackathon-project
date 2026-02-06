@@ -1,7 +1,9 @@
 import React from 'react'
 import { Clock, Users, MapPin, Home } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 function DepartmentCard({ dept }) {
+  const navigate = useNavigate()
   const fallbackImage =
     'https://images.unsplash.com/photo-1576091160550-112173f7f869?w=400&h=260&fit=crop'
 
@@ -16,7 +18,9 @@ function DepartmentCard({ dept }) {
         transition-all duration-300 
         overflow-hidden 
         w-full max-w-[420px]
+        cursor-pointer
       "
+      onClick={() => navigate(`/department-access/${dept._id}`)}
     >
       {/* Image */}
       <div className="h-52 w-full bg-slate-200">

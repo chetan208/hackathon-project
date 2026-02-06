@@ -11,6 +11,8 @@ import QueueStatusCard from "./components/QueueStatusCard";
 import ImportantNotice from "./components/ImportantNotice";
 import GenerateTokenButton from "./components/GenerateTokenButton";
 import WhatNextSection from "./components/WhatNextSection";
+import axios from "axios";
+
 
 const TokenPage = ({ hospital }) => {
   const navigate = useNavigate();
@@ -105,7 +107,29 @@ const TokenPage = ({ hospital }) => {
     console.log("Selected Department:", selectedDepartment);
     console.log("Selected Department ID:", selectedDepartmentId);
 
-    console.log("Form Data:", data);
+    try {
+      setIsSubmitting(true);
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users/generate-token`,{
+        hospitalId: hospital._id,
+        departmentId: selectedDepartmentId,
+        departmentName: selectedDepartment,
+        patientData: {
+          name: data.patientName,
+          age: data.age,
+          contactNumber: data.mobile,
+          visitType: data.visitType
+        }
+      })
+      setIsSubmitting(false);
+      console.log(res.data)
+      if(res.data.success){
+        navigate(`/token-status/${res.data.tokenData._id}`)
+      }
+      
+    } catch (error) {
+        console.log("Token generation error:", error);
+      
+    }
     
   };
 

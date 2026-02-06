@@ -46,7 +46,7 @@ useEffect(() => {
       } catch (err) {
         console.error(err);
       }
-    }, 1000); // 👈 3 seconds debounce
+    }, 500); // 👈 3 seconds debounce
 
     // cleanup → agar user firse type kare
     return () => clearTimeout(timer);

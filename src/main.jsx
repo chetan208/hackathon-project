@@ -19,6 +19,9 @@ import { Provider } from "react-redux";
 
 import store from './store/store.js'
 import SignInPage from './Pages/SignIn.jsx'
+import DepartmentAdminAccess from './Pages/DepartmentManagment.jsx'
+
+
 
 const router=createBrowserRouter([
     {
@@ -29,10 +32,10 @@ const router=createBrowserRouter([
             {path:'/search-hospital',element:(<SearchHospitalPage/>)}, //done-f
             {path:'/hospital/:id',element:(<HospitalInfoPage/>)}, // done-f
             {path:'/generate-token/:id',element:(<GenerateTokenPage/>)}, //done-f
-            {path:'/token-status-page',element:(<TokenStatusPage/>)}, //done-f
+            {path:'/token-status/:id',element:(<TokenStatusPage/>)}, //done-f
 
             {path:'/super-admin',element:(<SuperAdmin/>)}, //done-50%
-            {path:'/department-admin',element:(<DepartmentAdminPanalPage/>)},//done-f
+            {path:'/department-admin/:id',element:(<DepartmentAdminPanalPage/>)},//done-f
 
             {path:'/hospital-registration',element:(<HospitalSignup/>)}, //done-f
 
@@ -40,7 +43,11 @@ const router=createBrowserRouter([
 
             {path:'/register-user',element:(<RegisterUserPage/>)},
 
-            {path:'/login',element:(<SignInPage/>)}
+            
+            {path:'/login',element:(<SignInPage/>)},
+
+            {path:'/department-access/:id',element:(<DepartmentAdminAccess/>)}, 
+
         ]
     }
 ])
