@@ -1,6 +1,7 @@
 import {useState} from 'react';
 
-function LeftSection() {
+
+function LeftSection({searchQuerry ,setSearchQuerry}) {
 
      const handleReset = () => {
         setSearchText('');
@@ -18,65 +19,13 @@ function LeftSection() {
         console.log("Reset all filters");
       };
 
-        const handleSearch = () => {
-    let filtered = hospitals;
-
-    if (searchText) {
-      filtered = filtered.filter(h => 
-        h.name.toLowerCase().includes(searchText.toLowerCase()) ||
-        h.address.toLowerCase().includes(searchText.toLowerCase())
-      );
-    }
-
-    if (department) {
-      filtered = filtered.filter(h => 
-        h.departments.some(d => d.toLowerCase().includes(department.toLowerCase()))
-      );
-    }
-
-    if (facilityType) {
-      filtered = filtered.filter(h => h.type === facilityType);
-    }
-
-    if (distance) {
-      filtered = filtered.filter(h => 
-        parseFloat(h.distance) <= parseFloat(distance)
-      );
-    }
-
-    if (rating) {
-      filtered = filtered.filter(h => h.rating >= parseFloat(rating));
-    }
-
-    if (openNow) {
-      filtered = filtered.filter(h => h.isOpen);
-    }
-
-    if (hasEmergency) {
-      filtered = filtered.filter(h => h.emergency);
-    }
-
-    if (hasParking) {
-      filtered = filtered.filter(h => h.parking);
-    }
-
-    if (hasPharmacy) {
-      filtered = filtered.filter(h => h.pharmacy);
-    }
-
-    if (hasAmbulance) {
-      filtered = filtered.filter(h => h.ambulance);
-    }
-
-    setFilteredHospitals(filtered);
-    console.log("Searching with filters:", {
-      searchText, department, distance, openNow, rating, 
-      facilityType, hasEmergency, hasParking, hasPharmacy, hasAmbulance
-    });
+    const handleSearch = () => {
+     console.log(searchQuerry)
+    
   };
 
         // Search and Filter States
-        const [searchText, setSearchText] = useState('');
+        const [searchText, setSearchText] = useState(searchQuerry || '');
         const [department, setDepartment] = useState('');
         const [distance, setDistance] = useState('');
         const [openNow, setOpenNow] = useState(false);
@@ -115,8 +64,8 @@ function LeftSection() {
                     <input
                       type="text"
                       placeholder="Hospital name, city, pincode..."
-                      value={searchText}
-                      onChange={(e) => setSearchText(e.target.value)}
+                      value={searchQuerry}
+                      onChange={(e) => setSearchQuerry(e.target.value)}
                       className="w-full h-10 p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0055ff] focus:border-transparent transition"
                     />
                     <svg className="w-5 h-5 text-gray-400 absolute left-3 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

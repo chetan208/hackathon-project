@@ -16,7 +16,7 @@ const HospitalInfoComponent = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/hospitals/hospital-info/${email}`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/hospitals/hospital-info`,
           { withCredentials: true }
         );
 

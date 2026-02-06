@@ -7,6 +7,7 @@ import axios from "axios";
 export default function StepBasicDetails({ setData, onNext }) {
 
   const [loading , setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   const {
     register,
@@ -43,12 +44,14 @@ export default function StepBasicDetails({ setData, onNext }) {
       const backendUrl = import.meta.env.VITE_BACKEND_URL;
       const res= await axios.post(`${backendUrl}/api/hospitals/register`, basicDetails)
       console.log(res.data)
+
       setLoading(false);
       onNext();
         
 
     }catch (error) {
       console.error("Error in registering basic details:", error.response?.data || error.message);
+      setError(error.response?.data?.message || "An error occurred while registering. Please try again.");  
       setLoading(false);
       return;
     }
@@ -245,10 +248,12 @@ export default function StepBasicDetails({ setData, onNext }) {
             ${loading ? "opacity-70 cursor-wait" : ""}
           `}
         >
-          Continue to Email Verification
+          {loading ? "Submitting..." : "Next"}
           <ArrowRight className="h-5 w-5" />
         </button>
       </div>
+
+      {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
     </form>
   );

@@ -1,6 +1,17 @@
 import React from 'react'
+import {useNavigate} from 'react-router-dom'
+
+
 
 function LeftContent() {
+
+
+  const navigate = useNavigate();
+  const [searchString, setSearchString] = React.useState('');
+
+  const handleFindHospital = () => {
+    navigate('/search-hospital',{state:{searchString:searchString}});
+  }
   return (
     <div className=" sm:px-8 md:px-10 ml-0 md:ml-10 text-center md:text-left">
       
@@ -19,9 +30,11 @@ function LeftContent() {
         <input
           type="text"
           placeholder="Search hospital, city or pincode"
+          value={searchString}
+          onChange={(e) => setSearchString(e.target.value)}
           className="w-full sm:w-80 md:w-96 px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button className="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+        <button className="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={handleFindHospital}>
           Find Hospital
         </button>
       </div>

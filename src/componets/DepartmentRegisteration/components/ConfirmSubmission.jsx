@@ -10,14 +10,17 @@ import RegistrationSuccess from './RegistrationSuccess';
 const ConfirmSubmission = ({ formData, onPrevious }) => {
 
   const [success,setSuccess] = React.useState(false);
+  const [loading,setLoading] = React.useState(false)
 
   const onSubmit = async() => {
 
     const backendurl = import.meta.env.VITE_BACKEND_URL;
    
    try {
+    setLoading(true);
     const res = await axios.post(`${backendurl}/api/hospitals/add-department`, formData, {withCredentials: true});
     console.log(res.data);
+
 
     const fd= new FormData()
 
@@ -32,6 +35,8 @@ const ConfirmSubmission = ({ formData, onPrevious }) => {
     setSuccess(res.data.success);
    } catch (error) {
     console.error("Error submitting department registration:", error);
+   } finally {
+    setLoading(false);
    }
 };
 

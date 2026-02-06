@@ -27,7 +27,8 @@ function SetPassword({ onNext , onBack,email}) {
         const res = await axios.post(`${backendUrl}/api/hospitals/set-password`, {
             email: email,
             password: data.password
-        })
+        },{withCredentials: true});
+        console.log(res.cookies)
         console.log("Password set successfully:", res.data);
         onNext();
         

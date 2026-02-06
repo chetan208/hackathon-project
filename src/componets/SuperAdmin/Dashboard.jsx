@@ -38,12 +38,13 @@ const HospitalAdminDashboard = () => {
     { name: "Settings", icon: Settings },
   ];
 
-  const email = useSelector((state) => state.auth.userData.email);
+  const email = useSelector((state) => state.auth.userData?.email);
 
   useEffect(()=>{
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/hospitals/basic-info/${email}`);
+        console.log("email we are trying to get",email)
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/hospitals/basic-info`, { withCredentials: true });
         console.log("Hospital Basic Info:", res.data);
         setHospitalData(res.data.hospital);
 

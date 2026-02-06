@@ -23,7 +23,8 @@ const DepartmentsComponent = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/hospitals/department-details/${email}`
+          `${import.meta.env.VITE_BACKEND_URL}/api/hospitals/department-details`,
+          { withCredentials: true }
         );
         setDepartments(res.data.hospital.departments);
         setError(null);
