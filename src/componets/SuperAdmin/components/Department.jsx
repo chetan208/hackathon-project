@@ -26,6 +26,7 @@ const DepartmentsComponent = () => {
           `${import.meta.env.VITE_BACKEND_URL}/api/hospitals/department-details`,
           { withCredentials: true }
         );
+        console.log(res.data);
         setDepartments(res.data.hospital.departments);
         setError(null);
       } catch (error) {

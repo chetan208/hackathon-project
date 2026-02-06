@@ -1,50 +1,51 @@
-import React from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import React from "react";
+import { CheckCircle2 } from "lucide-react";
 
-import axios from 'axios';
+import axios from "axios";
 
-import RegistrationSuccess from './RegistrationSuccess';
-
-
+import RegistrationSuccess from "./RegistrationSuccess";
 
 const ConfirmSubmission = ({ formData, onPrevious }) => {
+  const [success, setSuccess] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
-  const [success,setSuccess] = React.useState(false);
-  const [loading,setLoading] = React.useState(false)
-
-  const onSubmit = async() => {
-
+  const onSubmit = async () => {
     const backendurl = import.meta.env.VITE_BACKEND_URL;
-   
-   try {
-    setLoading(true);
-    const res = await axios.post(`${backendurl}/api/hospitals/add-department`, formData, {withCredentials: true});
-    console.log(res.data);
 
+    try {
+      setLoading(true);
+      const res = await axios.post(
+        `${backendurl}/api/hospitals/add-department`,
+        formData,
+        { withCredentials: true },
+      );
+      console.log(res.data);
 
-    const fd= new FormData()
+      const fd = new FormData();
 
-    fd.append('mainEntrancePhoto', formData.mainEntrancePhoto);
-    fd.append('departmentId', res.data.departmentId); //--- TEMPORARY FIX ---
-    formData.additionalPhotos.forEach(file => {
-  fd.append('additionalPhotos', file);
-});
+      fd.append("mainEntrancePhoto", formData.mainEntrancePhoto);
+      fd.append("departmentId", res.data.departmentId); //--- TEMPORARY FIX ---
+      formData.additionalPhotos.forEach((file) => {
+        fd.append("additionalPhotos", file);
+      });
 
-    const response = await axios.post(`${backendurl}/api/hospitals/department/upload-image`,fd , {withCredentials:true})
-    console.log(response)
-    setSuccess(res.data.success);
-   } catch (error) {
-    console.error("Error submitting department registration:", error);
-   } finally {
-    setLoading(false);
-   }
-};
+      const response = await axios.post(
+        `${backendurl}/api/hospitals/department/upload-image`,
+        fd,
+        { withCredentials: true },
+      );
+      console.log(response);
+      setSuccess(res.data.success);
+    } catch (error) {
+      console.error("Error submitting department registration:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-if (success) {
-  return (
-    <RegistrationSuccess formData={formData} />
-  );
-}
+  if (success) {
+    return <RegistrationSuccess formData={formData} />;
+  }
 
   return (
     <div className="p-8">
@@ -83,7 +84,8 @@ if (success) {
             <div className="flex items-start gap-3">
               <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
               <span className="text-sm text-gray-700">
-                Doctor information added ({formData.doctors.length} doctor{formData.doctors.length !== 1 ? 's' : ''})
+                Doctor information added ({formData.doctors.length} doctor
+                {formData.doctors.length !== 1 ? "s" : ""})
               </span>
             </div>
             <div className="flex items-start gap-3">
@@ -98,7 +100,8 @@ if (success) {
         {/* Department Status Info */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <p className="text-sm text-blue-900">
-            <span className="font-semibold">Department Status:</span> Your department will be set to ACTIVE upon successful submission.
+            <span className="font-semibold">Department Status:</span> Your
+            department will be set to ACTIVE upon successful submission.
           </p>
         </div>
       </div>
@@ -108,9 +111,16 @@ if (success) {
         <button
           type="button"
           onClick={onSubmit}
-          className="w-full py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 shadow-sm hover:shadow transition"
+          disabled={loading}
+          className={`w-full py-3 rounded-lg font-semibold transition
+    ${
+      loading
+        ? "bg-green-400 cursor-wait opacity-70"
+        : "bg-green-600 text-white hover:bg-green-700 shadow-sm hover:shadow cursor-pointer"
+    }
+  `}
         >
-          Submit Registration
+          {loading ? "Submitting..." : "Submit Registration"}
         </button>
         <button
           type="button"
