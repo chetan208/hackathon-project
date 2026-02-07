@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { User, LogOut, ChevronDown, Settings, Mail, Shield } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/authSlice"; // adjust path
+import { useNavigate } from "react-router-dom";
 
 const NavbarUserMenu = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.userData);
   
   const [open, setOpen] = useState(false);
@@ -123,8 +125,9 @@ const NavbarUserMenu = () => {
             {/* Profile */}
             <button
               onClick={() => {
+                navigate("/profile");
                 setOpen(false);
-                // Add navigation logic here
+              
               }}
               className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#0055ff] transition-colors group"
             >

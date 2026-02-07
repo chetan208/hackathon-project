@@ -21,6 +21,9 @@ import store from './store/store.js'
 import SignInPage from './Pages/SignIn.jsx'
 import DepartmentAdminAccess from './Pages/DepartmentManagment.jsx'
 
+import Profile from './Pages/Profile.jsx'
+import Register from './Pages/RegisterPage.jsx'
+
 
 
 const router=createBrowserRouter([
@@ -47,6 +50,12 @@ const router=createBrowserRouter([
             {path:'/login',element:(<SignInPage/>)},
 
             {path:'/department-access/:id',element:(<DepartmentAdminAccess/>)}, 
+
+            {path:'/profile',element:(<Profile/>)},
+
+            {path:'/register' , element:(<Register/>)}
+
+
 
         ]
     }
