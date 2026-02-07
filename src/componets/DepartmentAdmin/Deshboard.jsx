@@ -17,10 +17,13 @@ import Reports from "./components/Reports";
 import Sidebar from "./components/Sidebar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import socket from "../../services/socket"
 
 const DeshBoard = () => {
   const [activetab, setActiveTab] = useState("Dashboard");
   const [collapsed, setCollapsed] = useState(false);
+  const [departmentAdminData, setDepartmentAdminData] = useState(null);
+  console.log(departmentAdminData)
 
   const menuItems = [
     { name: "Dashboard", icon: Activity },
@@ -34,10 +37,16 @@ const DeshBoard = () => {
 
   useEffect(()=>{
 
+    socket.connect();
+
+    socket.emit("join-department-admin", id);
+
+    
+
     const fetchDepartmentAdminData = async () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/hospitals/fetch-department-detailsfor-admin/${id}`, {withCredentials: true});
-        console.log("Department Admin Data:", res.data);
+        setDepartmentAdminData(res.data.department);
       } catch (error) {
         console.log("Error fetching department admin data:", error);
         
@@ -45,7 +54,68 @@ const DeshBoard = () => {
     }
     fetchDepartmentAdminData()
 
+    return () => {
+      socket.disconnect();
+    }
+
   },[])
+
+
+  const [queueDetails, setQueueDetails] = useState([]);
+  const [isPaused, setIsPaused] = useState(true);
+  
+  const [currentPatient, setCurrentPatient] = useState()
+  
+ 
+
+ 
+
+  useEffect(()=>{
+    const fetchQueueDetails = async () => {
+
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/hospitals/fetch-queue/${id}`, {
+          withCredentials: true
+        });
+        setQueueDetails(res.data.queue);
+        setCurrentPatient(res.data.queue[0]) // Set the first patient as the current patient
+        
+      } catch (error) {
+        console.log("Error fetching queue details:", error);
+      }
+    
+    }
+
+      fetchQueueDetails()
+  },[])
+
+
+
+  useEffect(() => {
+
+    socket.on("new-token", (tokenData) => {
+      console.log("New token received in dashboard:", tokenData);
+      setQueueDetails((prevQueue) => [...prevQueue, tokenData]);
+    });
+  },[])
+
+  const [avgWaitTime, setAvgWaitTime] = useState(0);
+  const [servedTokensCount, setServedTokensCount] = useState(0);
+
+  useEffect(()=>{
+    const fetchAvgWaitTime = async () => {
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/queue/average-time/${id}`, {
+          withCredentials: true
+        });
+        setAvgWaitTime(res.data.averageTimeMinutes);
+        setServedTokensCount(res.data.totalTokens);
+      } catch (error) {
+        console.log("Error fetching average wait time:", error);
+      }
+    }
+    fetchAvgWaitTime()
+  },[queueDetails])
 
   return (
     <div className="min-h-screen bg-gray-100 flex mt-10">
@@ -61,8 +131,19 @@ const DeshBoard = () => {
 
       {/* MAIN CONTENT */}
       <main className="flex-1 p-6">
-        {activetab === "Dashboard" && <DepartmentDashboard />}
-        {activetab === "Live Queue" && <LiveQueue />}
+        {activetab === "Dashboard" && <DepartmentDashboard
+         department = {departmentAdminData}
+          queueDetails = {queueDetails} 
+          setQueueDetails={setQueueDetails}
+          isPaused={isPaused}
+          currentPatient={currentPatient}
+          setCurrentPatient={setCurrentPatient}
+          setIsPaused={setIsPaused}
+          avgWaitTime={avgWaitTime}
+          servedTokensCount={servedTokensCount}
+          
+          />}
+        {activetab === "Live Queue" && <LiveQueue queueDetails = {queueDetails} />}
         {activetab === "Token List" && <TokenList />}
         {activetab === "Doctor Availability" && <DoctorAvailability />}
         {activetab === "Reports" && <Reports />}

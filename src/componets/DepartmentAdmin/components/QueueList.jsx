@@ -25,7 +25,7 @@ import {
   ArrowDownRight
 } from 'lucide-react';
 
-const LiveQueue = () => {
+const LiveQueue = ({queueDetails}) => {
   const [currentToken, setCurrentToken] = useState('A-21');
   
   const queueData = [
@@ -63,7 +63,7 @@ const LiveQueue = () => {
         </div>
         <div className="flex-1 bg-white border border-gray-200 p-4 rounded-lg">
           <p className="text-sm text-gray-600 mb-1">Waiting</p>
-          <p className="text-3xl font-bold text-gray-800">{queueData.filter(q => q.status === 'waiting').length}</p>
+          <p className="text-3xl font-bold text-gray-800">{queueDetails.length}</p>
         </div>
         <div className="flex-1 bg-white border border-gray-200 p-4 rounded-lg">
           <p className="text-sm text-gray-600 mb-1">Avg Wait</p>
@@ -87,8 +87,8 @@ const LiveQueue = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {queueData.map((patient, index) => (
-              <tr key={index} className={`hover:bg-gray-50 ${patient.status === 'serving' ? 'bg-green-50' : ''}`}>
+            {queueDetails.map((patient, index) => (
+              <tr key={index} className={`hover:bg-gray-50 ${patient?.status === 'serving' ? 'bg-green-50' : ''}`}>
                 <td className="px-6 py-4">
                   <span className="font-semibold text-gray-800">{index + 1}</span>
                 </td>
@@ -96,20 +96,20 @@ const LiveQueue = () => {
                   <span className="font-bold text-[#0055ff]">{patient.token}</span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className="text-gray-800">{patient.name}</span>
+                  <span className="text-gray-800">{patient?.patientData?.name}</span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className="text-gray-600">{patient.age}</span>
+                  <span className="text-gray-600">{patient?.patientData.age}</span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className="text-sm text-gray-600">{patient.type}</span>
+                  <span className="text-sm text-gray-600">{patient?.patientData?.visitType}</span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className="text-sm text-gray-600">{patient.arrivalTime}</span>
+                  <span className="text-sm text-gray-600">{patient?.arrivalTime}</span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className={`text-sm font-medium ${patient.waitTime > 30 ? 'text-orange-600' : 'text-gray-600'}`}>
-                    {patient.waitTime === 0 ? 'Being served' : `${patient.waitTime} mins`}
+                  <span className={`text-sm font-medium ${patient?.waitTime > 30 ? 'text-orange-600' : 'text-gray-600'}`}>
+                    {patient.waitTime === 0 ? 'Being served' : `${patient?.waitTime} mins`}
                   </span>
                 </td>
                 <td className="px-6 py-4">
