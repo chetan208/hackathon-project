@@ -99,7 +99,7 @@ const DepartmentDashboard = ({
   const onComplete = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users/complete-token/${currentPatient._id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/complete-token/${queueDetails[0]._id}`,
         {
           withCredentials: true,
         },
@@ -115,6 +115,7 @@ const DepartmentDashboard = ({
       });
 
       console.log(res.data);
+      
     } catch (error) {
       console.log("Error completing token:", error);
     }
@@ -122,7 +123,20 @@ const DepartmentDashboard = ({
 
   useEffect(()=>{
     setCurrentPatient(queueDetails[0])
+
+    const startQueue = async()=>{
+      const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/api/users/resume-token/${queueDetails[0]._id}`,
+          {
+            withCredentials: true,
+          },
+        );
+    }
+
+    startQueue();
+
   },[queueDetails])
+
 
 
 
@@ -196,6 +210,7 @@ const DepartmentDashboard = ({
               isPaused={isPaused}
               togglePause={togglePause}
               onComplete={onComplete}
+              currentPatient={currentPatient}
             />
           </div>
 

@@ -33,7 +33,7 @@ function DeshboardWaitingQueue({waitingQueue}) {
                     <div className="flex items-center justify-between mt-3 pt-3 border-t border-blue-200">
                       <div className="flex items-center space-x-2">
                         <Clock size={14} className="text-[#0055ff]" />
-                        <span className="text-xs text-gray-600">Est. Wait: <span className="font-semibold text-gray-800">{patient?.waitTime} mins</span></span>
+                        <span className="text-xs text-gray-600">Est. Wait: <span className="font-semibold text-gray-800">{patient?.waitingTime} mins</span></span>
                       </div>
                       <span className="text-xs bg-white px-2 py-1 rounded text-gray-600">{patient.patientData.visitType}</span>
                     </div>

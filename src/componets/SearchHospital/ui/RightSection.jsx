@@ -106,7 +106,7 @@ function RightSection({hospitals}) {
                       <button
                       onClick={() => navigate(`/hospital/${hospital._id}`)}
                        className="flex-1 sm:flex-none bg-[#0055ff] text-white px-4 py-2 rounded-lg font-medium hover:bg-[#0044dd] transition text-sm">
-                        Book Appointment
+                        Get Token
                       </button>
                       <button
                       onClick={() => navigate(`/hospital/${hospital._id}`)}
